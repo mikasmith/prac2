@@ -1,0 +1,21 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+
+int main(void){
+    double s1, s2, s3;
+    int n;
+    
+    if(4==scanf("%d%lg%lg%lg", &n, &s1, &s2, &s3)){
+        if(s1 < s2 && s1 < s3){
+            printf("%2.2f", (s2+s3)/2);
+        }else if(s2 < s1 && s2 < s3){
+            printf("%2.2f", (s1+s3)/2);
+        }else{
+            printf("%2.2f", (s1+s2)/2);
+        }
+    }
+
+    printf("\n");
+    return EXIT_SUCCESS;
+}
