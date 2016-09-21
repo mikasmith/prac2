@@ -55,43 +55,31 @@ void flexarray_print(flexarray f) {
     }
 }
 
-static void half_print(int *a, int n){
-    int i;
-    for(i=0;i<n;i++){
-        printf("%d\n", a[i]);
-    }
-}
 
-static void insertion_sort(int*a, int n){
-    int p,c,key;
+
+void insertion_sort(flexarray f){
+    int p, index, key, i; 
 
     /*For each position in a except the first.*/
+    for(p=1; p < f->itemcount; p++){
+        if(p== f->itemcount/2){
+            for(i=0; i < f->itemcount; i++){
+                fprintf(stderr, "%d\n", f->items[i])
+            }
+            }
+        }
     
-    for(c=1;c<=n-1;c++){
-        p=c;
         /**While the item to the left of p is greater than p.*/
-        while(p>0&&a[p]<a[p-1]){
+        while(index >0 && f->items[index] < f->items[index-1]){
             /*Pull out the item at p and store in key.*/
-            key=a[p];
+            key=f->items[index];
             /*Move item to the left of p to p.*/
-            a[p]=a[p-1];
+            f->items[index]= f->items[index-1];
             /*The new gap will be filled with key.*/
-            
-            a[p-1]=key;
-            p--;
+            f->items[index-1]=key; 
+            index--;
         }
-        if(c== n){
-            half_print(a, n);
-        }
-       
     }
-   
-    
-}
-
-void flexarray_sort(flexarray f) {
-/* sort into ascending order */
-    insertion_sort(f->items, f->itemcount);
 }
 
 void flexarray_free(flexarray f) {
