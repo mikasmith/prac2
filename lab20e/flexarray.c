@@ -22,7 +22,7 @@ void *erealloc(void *p, size_t s) {
     /* implementation of erealloc goes here */
     void *result = realloc(p, s);
     if (NULL == result) {
-        fprintf(stderr, "Memory allocation failed!\n");
+        fprintf(stderr, "Memory reallocation failed!\n");
         exit(EXIT_FAILURE);
     }
     return result;
@@ -63,29 +63,26 @@ void selection_sort(flexarray f) {
     for(p=0; p < f->itemcount-1 ; p++){
         if(p == f->itemcount/2){    
             for(c=0;c < f->itemcount;c++){
-                fprintf(stderr, "%d\n", f->items[c]);
+                fprintf(stderr,"%d\n",f->items[c]);
             }
         }
         
         small=p;
         for(i=p; i < f->itemcount ; i++){
             /*If the current element is larger than the right element.*/
-            if(f->items[i] > f->items[small]){
+            if(f->items[i] < f->items[small]){
                 /*Set d as the smallest element in p.*/
                 small=i;
             }
         }
         /**If the smallest element p is not in position c.*/
-        if(small!=p){
-            /*Swap the two elements in positions p and c.*/
-            key = f->items[p];
+        
+        /*Swap the two elements in positions p and c.*/
+        key = f->items[p];
             
-            f->items[p]= f->items[small];
-            f->items[small]=key;
-        }      
+        f->items[p]= f->items[small];
+        f->items[small]=key;             
     }
-   
-
 }
 
 void flexarray_free(flexarray f) {

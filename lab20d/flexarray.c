@@ -20,9 +20,9 @@ void *emalloc(size_t s) {
 
 void *erealloc(void *p, size_t s) {
     /* implementation of erealloc goes here */
-    void *result = realloc(p,s);
+    void *result = realloc(p, s);
     if (NULL == result) {
-        fprintf(stderr, "Memory allocation failed!\n");
+        fprintf(stderr, "Memory reallocation failed!\n");
         exit(EXIT_FAILURE);
     }
     return result;
@@ -30,7 +30,7 @@ void *erealloc(void *p, size_t s) {
 
 flexarray flexarray_new() {
 /* initialise flexarray structure (including items array) */
-    flexarray result = emalloc(sizeof *result);
+    flexarray result = emalloc(sizeof*result);
     result->capacity =2;
     result->itemcount=0;
     result->items = emalloc(result->capacity * sizeof result->items[0]);
@@ -58,26 +58,24 @@ void flexarray_print(flexarray f) {
 
 
 void insertion_sort(flexarray f){
-    int p, index, key, i; 
+    int p, index=0, key, i; 
 
     /*For each position in a except the first.*/
     for(p=1; p < f->itemcount; p++){
-        if(p== f->itemcount/2){
+        if(p == f->itemcount/2){
             for(i=0; i < f->itemcount; i++){
-                fprintf(stderr, "%d\n", f->items[i])
-            }
+                fprintf(stderr,"%d\n",f->items[i]);
             }
         }
-    
+        
         /**While the item to the left of p is greater than p.*/
-        while(index >0 && f->items[index] < f->items[index-1]){
+        for(index=p; index >0 && f->items[index] < f->items[index-1]; index--){
             /*Pull out the item at p and store in key.*/
             key=f->items[index];
             /*Move item to the left of p to p.*/
             f->items[index]= f->items[index-1];
             /*The new gap will be filled with key.*/
             f->items[index-1]=key; 
-            index--;
         }
     }
 }
