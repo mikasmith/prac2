@@ -3,15 +3,19 @@
 
 
 void repeats(int *array, int size){
-    int i, x=0;
+    int i;
     int *rand_freq = malloc(size * sizeof rand_freq[0]);
-    
+    for(i=0; i< size; i++){
+        frequency_array[i]=0;
+    }
     for (i = 0; i < size; i++) {
-        rand_freq[i]+=1;
+        rand_freq[array[i]]++;
     }
 
-    while(rand_freq[x]>1 && x < size){
-        printf("%d occurs %d times\n", x, rand_freq[x]);
+    for(i=0; i<size - 1; i++){
+        if(rand_freq[i]>1){
+            printf("%d occurs %d times\n", i, rand_freq[i]);
+        }
         x++;
     }
 
