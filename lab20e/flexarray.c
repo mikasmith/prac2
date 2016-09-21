@@ -55,40 +55,37 @@ void flexarray_print(flexarray f) {
     }
 }
 
-static void half_print(int *a, int n){
-    int i;
-    for(i=0;i<n;i++){
-        printf("%d\n", a[i]);
-    }
-}
-
-static void selection_sort(int*a, int n){
-    int p,c,d,key;
+void selection_sort(flexarray f) {
+    /* sort into ascending order */
+    int p, c, small, key, i; 
 
     /*For each position c in the array a except the last one.*/
-    for(c=0;c<=n-1;c++){
-        p=c;
-        for(d=c+1;d<n;d++){
+    for(p=0; p < f->itemcount-1 ; p++){
+        if(p == f->itemcount/2){    
+            for(c=0;c < f->itemcount;c++){
+                fprintf(stderr, "%d\n", f->items[c]);
+            }
+        }
+        
+        small=p;
+        for(i=p; i < f->itemcount ; i++){
             /*If the current element is larger than the right element.*/
-            if(a[p]>a[d]){
+            if(f->items[i] > f->items[small]){
                 /*Set d as the smallest element in p.*/
-                p=d;
+                small=i;
             }
         }
         /**If the smallest element p is not in position c.*/
-        if(p!=c){
+        if(small!=p){
             /*Swap the two elements in positions p and c.*/
-            key=a[c];
-            a[c]=a[p];
-            a[p]=key;
+            key = f->items[p];
+            
+            f->items[p]= f->items[small];
+            f->items[small]=key;
         }      
     }
    
-}
 
-void flexarray_sort(flexarray f) {
-/* sort into ascending order */
-    selection_sort(f->items, f->itemcount);
 }
 
 void flexarray_free(flexarray f) {
