@@ -1,20 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "flexarray.h"
-#define ARRAY_MAX 10
-
-
-/*void insertion_sort(int *a, int n) {
-
-}
-
-static void array_print(int *a, int n) {
-    int i;
-    for (i = 0; i < n; i++) {
-        printf("%d\n", a[i]);
-    }
-    }*/
-
 
 int main(void) {
     int item;
