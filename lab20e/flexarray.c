@@ -57,13 +57,13 @@ void flexarray_print(flexarray f) {
 
 void selection_sort(flexarray f) {
     /* sort into ascending order */
-    int p, c, small, key, i; 
+    int p, small, key, i; 
 
     /*For each position c in the array a except the last one.*/
     for(p=0; p < f->itemcount-1 ; p++){
         if(p == f->itemcount/2){    
-            for(c=0;c < f->itemcount;c++){
-                fprintf(stderr,"%d\n",f->items[c]);
+            for(i=0;c < f->itemcount;i++){
+                fprintf(stderr,"%d\n",f->items[i]);
             }
         }
         
